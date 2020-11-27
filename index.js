@@ -22,7 +22,7 @@ const start = (aruga = new Client()) => {
 	const groups = await aruga.getAllGroups()
 	// kondisi ketika batas group bot telah tercapai,ubah di file settings/setting.json
 	if (groups.length > groupLimit) {
-	await aruga.sendText(chat.id, `Sorry, the group on this bot is full\nMax Group is: ${groupLimit}`).then(() => {
+	await aruga.sendText(chat.id, `Desculpe o limite de grupos no bot já foi atingido o limite é de: ${groupLimit}`).then(() => {
 	      aruga.leaveGroup(chat.id)
 	      aruga.deleteChat(chat.id)
 	  }) 
@@ -35,7 +35,7 @@ const start = (aruga = new Client()) => {
 	    })
 	    } else {
         await aruga.simulateTyping(chat.id, true).then(async () => {
-          await aruga.sendText(chat.id, `Hai minna~, Im Aruga BOT. To find out the commands on this bot type ${prefix}menu`)
+          await aruga.sendText(chat.id, `Olá~, Sou o Srang-BOT para ver meus comandos digite ${prefix}menu`)
         })
 	    }
 	}
@@ -46,17 +46,17 @@ const start = (aruga = new Client()) => {
         const host = await aruga.getHostNumber() + '@c.us'
         // kondisi ketika seseorang diinvite/join group lewat link
         if (event.action === 'add' && event.who !== host) {
-            await aruga.sendTextWithMentions(event.chat, `Hello, Welcome to the group @${event.who.replace('@c.us', '')} \n\nHave fun with us✨`)
+            await aruga.sendTextWithMentions(event.chat, `Olá, Bem-vindo ao grupo @${event.who.replace('@c.us', '')} \n\nMembro novo mama o bonde✨`)
         }
         // kondisi ketika seseorang dikick/keluar dari group
         if (event.action === 'remove' && event.who !== host) {
-            await aruga.sendTextWithMentions(event.chat, `Good bye @${event.who.replace('@c.us', '')}, We'll miss you✨`)
+            await aruga.sendTextWithMentions(event.chat, `Adeus @${event.who.replace('@c.us', '')}, foi um desprazer conhecê-lo✨`)
         }
     })
 
     aruga.onIncomingCall(async (callData) => {
         // ketika seseorang menelpon nomor bot akan mengirim pesan
-        await aruga.sendText(callData.peerJid, 'Maaf sedang tidak bisa menerima panggilan.\n\n-bot')
+        await aruga.sendText(callData.peerJid, 'Para de me ligar filho da puta.\n\n-bot')
         .then(async () => {
             // bot akan memblock nomor itu
             await aruga.contactBlock(callData.peerJid)
@@ -86,3 +86,4 @@ const start = (aruga = new Client()) => {
 create(options(true, start))
     .then((aruga) => start(aruga))
     .catch((err) => new Error(err))
+
